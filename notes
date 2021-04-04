@@ -1,0 +1,32 @@
+Installed
+
+npm i --save-dev enzyme enzyme-adapter-react-1
+
+For Configuration
+
+import{ configure,shallow} from "enzyme"
+
+// we get confgigure and enzyme
+
+configure is for configuring enzyme
+
+// we need to use configure for every testi file
+
+
+shallow ==> shallow is a function from enzyme .
+
+shallow
+
+creates an instance from the component 
+import adapter from "enzyme-adapter-react-16"
+
+
+configure({adapter: new adapter()})
+
+
+Useful Links:
+React: https://reactjs.org/docs/getting-star...
+​
+Jest: https://jestjs.io/
+​
+Enzyme: https://airbnb.io/enzyme/
