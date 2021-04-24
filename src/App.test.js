@@ -1,8 +1,15 @@
-import App from "./App";
+import App, { util } from "./App";
 import React from "react";
-import { Counter } from "./Counter";
-
+import { api } from "./fetchuser";
+import { getQueriesForElement } from "@testing-library/dom";
 import { mount, shallow } from "enzyme";
+import ReactDOM from "react-dom";
+
+const renderComp = (component) => {
+  const root = document.createElement("div");
+  ReactDOM.render(component, root);
+  return getQueriesForElement(root);
+};
 describe("Counter Testing", () => {
   let wrapper;
   beforeEach(() => {
@@ -43,5 +50,11 @@ describe("Counter Testing", () => {
       clicks++;
     }
     expect(wrapper.find("#counter-value").text()).toBe("29");
+  });
+  test("if function get user is called on click of increment", () => {
+    const mockCreateItem = (api.createItem = jest.fn());
+    wrapper.find("#increment-btn").simulate("click");
+    mockCreateItem.mockResolvedValueOnce({ id: 123, text: "" });
+    expect(mockCreateItem).toBeCalledTimes(1);
   });
 });
